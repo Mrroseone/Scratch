@@ -1,0 +1,130 @@
+<head>
+  <title>scratch</title>
+</head>
+
+<body>
+
+{{> projekte}}
+
+</body>
+
+<template name="projekte">
+<div class="container">
+	<div class="jumbotron">
+	  <h1>Welcome to Meteor!</h1>
+
+		
+	</div>
+	<div class="col-md-12">
+      {{> testTemplate}}
+		  {{> insertBookForm}}
+
+	</div>	  
+
+	
+
+</div>
+</template>
+
+<template name="testTemplate">
+  {{#dropdownTrigger name="testDropdown6"}}
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+
+  {{/dropdownTrigger}}
+
+  {{#dropdown name="testDropdown6" classes="dropdown--menu" align="left"}}
+    <ul class="dropdown__menu">
+      {{#each drop}}
+        <li role="menuItem"><a href="#">{{title}}</a></li>
+      {{/each}}
+    </ul>
+  {{/dropdown}}
+</template>
+
+<template name="insertBookForm">
+  {{#autoForm collection="Projekte" id="insertBookForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+    <fieldset>
+      <legend>Projekt</legend>
+      {{> afQuickField name='title' placeholder='Projektname'}}
+      {{> afQuickField name='jobnumber' placeholder='2015LHT01'}}
+      {{> afQuickField name='amount' placeholder='Angebotsbetrag'}}
+      {{> afQuickField name='team' placeholder='2015LHT01'}}
+      {{> afQuickField name='akquise' placeholder='2015LHT01'}}
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template> 
+
+<template name="items">
+<tr>
+          <th scope="row">1</th>
+          <td>{{title}}</td>
+          <td>{{amount}}</td>
+          <td> {{#each billable}}
+            <p>{{name}} : {{cost}}</p>
+          {{/each}}</td>
+</tr>
+</template>
+
+<template name="items2">
+<tr>
+          <th scope="row">1</th>
+      
+          <td> {{#each billable}}
+            <p>{{name}}</p>
+          {{/each}}</td>
+           <td> {{#each billable}}
+            <p>{{cost}}</p>
+          {{/each}}</td>
+</tr>
+</template>
+
+<template name="table">
+
+<div class="col-md-8">
+      <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+          </thead>
+
+        <tbody>
+        {{# each project}}
+          {{> items}}
+        {{/each}}
+      </tbody>
+
+
+        
+      </table>
+  </div>    
+
+    <div class="col-md-4">
+      <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Beleg</th>
+          <th>Kosten</th>
+        </tr>
+          </thead>
+
+        <tbody>
+        {{# each project}}
+          {{> items2}}
+        {{/each}}
+      </tbody>
+
+      
+        
+      </table>
+  </div>  
+</template>
